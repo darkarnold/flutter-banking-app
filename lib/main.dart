@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue[800]!),
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
