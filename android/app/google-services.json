@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "472737050788",
+    "project_id": "flutter-banking-app-fe917",
+    "storage_bucket": "flutter-banking-app-fe917.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472737050788:android:36926c00fc69d88c4db631",
+        "android_client_info": {
+          "package_name": "com.example.banking_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOcMsirQlH1Nmm_8MEqZDiz4ZawqrWi1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472737050788:android:084ad2dcd9beae114db631",
+        "android_client_info": {
+          "package_name": "com.example.banking_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOcMsirQlH1Nmm_8MEqZDiz4ZawqrWi1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
