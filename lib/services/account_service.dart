@@ -14,9 +14,9 @@ class AccountService {
       ),
       Transaction(
         id: '2',
-        amount: -75.0,
+        amount: 300.0,
         date: DateTime.now().subtract(const Duration(days: 3)),
-        description: 'Food',
+        description: 'Loan',
       ),
       Transaction(
         id: '3',
