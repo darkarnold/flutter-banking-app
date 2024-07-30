@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../services/authentication_service.dart';
 import '../providers/account_provider.dart';
@@ -14,10 +15,13 @@ class AccountOverview extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Account Overview',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 24, color: Colors.black),
+          style: GoogleFonts.notoSans(
+              textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.black)),
         ),
         actions: [
           IconButton(
@@ -38,11 +42,13 @@ class AccountOverview extends StatelessWidget {
               const SizedBox(height: 20),
               const QuickActionButtons(),
               const SizedBox(height: 20),
-              const Text('Recent Transactions',
-                  style: TextStyle(
+              Text('Recent Transactions',
+                  style: GoogleFonts.notoSans(
+                      textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                  )),
+                    color: Colors.black,
+                  ))),
               const SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,

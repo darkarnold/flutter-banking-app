@@ -1,5 +1,6 @@
 import 'package:banking_mobile_app/services/authentication_service.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,7 +22,15 @@ class LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Login'),
+          title: Text(
+            'Login',
+            style: GoogleFonts.notoSans(
+                textStyle: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
+          ),
         ),
         body: SafeArea(
           child: Padding(
@@ -78,9 +87,13 @@ class LoginScreenState extends State<LoginScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
-                      child: const Text(
+                      child: Text(
                         'Sign In',
-                        style: TextStyle(color: Colors.white, fontSize: 16.0),
+                        style: GoogleFonts.notoSans(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold)),
                       )),
                 ])),
           ),

@@ -1,4 +1,5 @@
 import 'Package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TransferFunds extends StatelessWidget {
   const TransferFunds({super.key});
@@ -8,7 +9,13 @@ class TransferFunds extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Transfer Funds'),
+        title: Text(
+          'Transfer Funds',
+          style: GoogleFonts.notoSans(
+            textStyle: const TextStyle(
+                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
       body: const SafeArea(
         child: Padding(

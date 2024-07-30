@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BalanceDisplay extends StatelessWidget {
   final double balance;
@@ -16,22 +17,23 @@ class BalanceDisplay extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Current Balance',
-            style: TextStyle(
-                color: Colors.white70,
-                fontWeight: FontWeight.bold,
-                fontSize: 18),
+            style: GoogleFonts.notoSans(
+                textStyle: const TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18)),
           ),
           const SizedBox(height: 8),
-          Text(
-            '\$${balance.toStringAsFixed(2)}',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text('\$${balance.toStringAsFixed(2)}',
+              style: GoogleFonts.notoSans(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
         ],
       ),
     );
