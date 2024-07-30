@@ -1,4 +1,6 @@
+import 'package:banking_mobile_app/services/authentication_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,6 +13,8 @@ class LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
                 key: _formKey,
                 child: Column(children: [
                   TextFormField(
+                    controller: emailController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
@@ -44,6 +49,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16.0),
                   TextFormField(
+                    controller: passwordController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
@@ -61,7 +67,9 @@ class LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // TODO: Implement login logic
+                          context.read<AuthenticationService>().signIn(
+                              email: emailController.text,
+                              password: passwordController.text);
                         }
                       },
                       style: ElevatedButton.styleFrom(

@@ -46,3 +46,6 @@ app.*.map.json
 **/GoogleService-Info.plist
 **/google-services.json
 **/firebase_options.dart
+
+# Ignore firepit-log.text
+firepit-log.txt
