@@ -38,6 +38,7 @@ class LoginScreenState extends State<LoginScreen> {
             child: Form(
                 key: _formKey,
                 child: Column(children: [
+                  const SizedBox(height: 18.0),
                   TextFormField(
                     controller: emailController,
                     decoration: const InputDecoration(

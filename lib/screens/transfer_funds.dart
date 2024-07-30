@@ -1,4 +1,5 @@
 import 'Package:flutter/material.dart';
+import '../widgets/send_money_form.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransferFunds extends StatelessWidget {
@@ -20,7 +21,7 @@ class TransferFunds extends StatelessWidget {
       body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Text('Transfer Funds'),
+          child: SendMoneyForm(),
         ),
       ),
     );
