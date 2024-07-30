@@ -4,14 +4,15 @@ import '../services/authentication_service.dart';
 import '../providers/account_provider.dart';
 import '../widgets/balance_display.dart';
 import '../widgets/transaction_list.dart';
+import '../widgets/quick_action_buttons.dart';
 
 class AccountOverview extends StatelessWidget {
   const AccountOverview({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //final accountProvider = Provider.of<AccountProvider>(context);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'Account Overview',
@@ -34,6 +35,8 @@ class AccountOverview extends StatelessWidget {
             onRefresh: () => accountProvider.refreshAccountData(),
             child: ListView(padding: const EdgeInsets.all(16), children: [
               BalanceDisplay(balance: accountProvider.balance),
+              const SizedBox(height: 20),
+              const QuickActionButtons(),
               const SizedBox(height: 20),
               const Text('Recent Transactions',
                   style: TextStyle(
