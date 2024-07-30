@@ -6,11 +6,15 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import './screens/login_screen.dart';
 import './screens/account_overview.dart';
+import '../providers/account_provider.dart';
+import '../services/account_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => AccountProvider(accountService: AccountService()),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
           create: (context) =>
               context.read<AuthenticationService>().authStateChanges,
           initialData: null,
-        )
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Banking Mobile App',
