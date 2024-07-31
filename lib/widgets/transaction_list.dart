@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import '../screens/transaction_details.dart';
 
 class TransactionListItem extends StatelessWidget {
   final Transaction transaction;
@@ -18,7 +20,9 @@ class TransactionListItem extends StatelessWidget {
         ),
       ),
       title: Text(transaction.description, style: GoogleFonts.notoSans()),
-      subtitle: Text(transaction.date.toString()),
+      subtitle: Text(
+        DateFormat('dd-MM-yyyy\nHH:mm').format(transaction.date),
+      ),
       trailing: Text(
           '${transaction.amount > 0 ? '+' : '-'}\$${transaction.amount.abs().toStringAsFixed(2)}',
           style: GoogleFonts.notoSans(
@@ -30,6 +34,11 @@ class TransactionListItem extends StatelessWidget {
           )),
       onTap: () {
         // Navigate to transaction details
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    TransactionDetails(transaction: transaction)));
       },
     );
   }
