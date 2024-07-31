@@ -28,8 +28,7 @@ class AccountProvider extends ChangeNotifier {
 
 // Getters for balance and transactions
   double get balance => _balance;
-  List<Transaction> get recentTransactions =>
-      List.unmodifiable(_recentTransactions);
+  List<Transaction> get recentTransactions => List.from(_recentTransactions);
   bool get isLoading => _isLoading;
   String? get error => _error;
 

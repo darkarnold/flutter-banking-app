@@ -105,6 +105,7 @@ class SendMoneyFormState extends State<SendMoneyForm> {
                   if (_formKey.currentState!.validate()) {
                     final accountProvider =
                         Provider.of<AccountProvider>(context, listen: false);
+                    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
                     // transfer object for sending money
                     Transfer transfer = Transfer(
@@ -117,7 +118,7 @@ class SendMoneyFormState extends State<SendMoneyForm> {
                     bool success = await accountProvider.sendMoney(transfer);
 
                     if (success) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      scaffoldMessenger.showSnackBar(SnackBar(
                           content: Text(
                         'Money sent succesfully',
                         style: GoogleFonts.notoSans(
@@ -129,7 +130,7 @@ class SendMoneyFormState extends State<SendMoneyForm> {
 
                       Navigator.pop(context);
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      scaffoldMessenger.showSnackBar(SnackBar(
                         content: Text(
                           'Transfer failed!',
                           style: GoogleFonts.notoSans(

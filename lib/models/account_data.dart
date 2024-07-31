@@ -16,6 +16,6 @@ class AccountData {
 
   // add transaction to transaction list
   void addTransaction(Transaction transaction) {
-    recentTransactions.add(transaction);
+    recentTransactions.insert(0, transaction);
   }
 }
