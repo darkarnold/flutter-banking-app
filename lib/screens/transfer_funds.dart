@@ -1,6 +1,8 @@
 import 'Package:flutter/material.dart';
 import '../widgets/send_money_form.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../providers/account_provider.dart';
 
 class TransferFunds extends StatelessWidget {
   const TransferFunds({super.key});
@@ -18,10 +20,11 @@ class TransferFunds extends StatelessWidget {
           ),
         ),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: SendMoneyForm(),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Consumer<AccountProvider>(
+              builder: (context, accountProvider, _) => const SendMoneyForm()),
         ),
       ),
     );

@@ -1,9 +1,15 @@
+import 'package:banking_mobile_app/models/account_data.dart';
 import 'package:flutter/foundation.dart';
 import '../models/transaction.dart';
+import '../models/transfer.dart';
 import '../services/account_service.dart';
+import '../services/transfer_service.dart';
 
 class AccountProvider extends ChangeNotifier {
   final AccountService accountService;
+
+  // instance of transfer service
+  final TransferService transferService = TransferService();
 
   // Account balance
   double _balance = 0.0;
@@ -48,5 +54,22 @@ class AccountProvider extends ChangeNotifier {
   // refresh account data
   Future<void> refreshAccountData() async {
     await fetchAccountData();
+  }
+
+  // send money to another account
+  Future<bool> sendMoney(Transfer transfer) async {
+    // make a copy of cuurent account data
+    AccountData accountData = AccountData(
+        balance: _balance, recentTransactions: List.from(_recentTransactions));
+
+    bool success = await transferService.makeTransfer(accountData, transfer);
+
+    if (success) {
+      _balance = accountData.balance;
+      _recentTransactions = accountData.recentTransactions;
+      notifyListeners();
+    }
+
+    return success;
   }
 }

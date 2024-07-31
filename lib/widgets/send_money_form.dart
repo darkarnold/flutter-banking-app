@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../providers/account_provider.dart';
+import '../models/transfer.dart';
 
 class SendMoneyForm extends StatefulWidget {
   const SendMoneyForm({super.key});
@@ -98,9 +101,45 @@ class SendMoneyFormState extends State<SendMoneyForm> {
                   )),
               const SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
+                    final accountProvider =
+                        Provider.of<AccountProvider>(context, listen: false);
+
+                    // transfer object for sending money
+                    Transfer transfer = Transfer(
+                      accountNumber: accountNumberController.text,
+                      amount: double.parse(amountController.text),
+                      description: descriptionController.text,
+                    );
+
+                    // send money
+                    bool success = await accountProvider.sendMoney(transfer);
+
+                    if (success) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                        'Money sent succesfully',
+                        style: GoogleFonts.notoSans(
+                            textStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white)),
+                      )));
+
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          'Transfer failed!',
+                          style: GoogleFonts.notoSans(
+                              textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
+                        ),
+                      ));
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(
