@@ -12,6 +12,7 @@ class SendMoneyForm extends StatefulWidget {
 }
 
 class SendMoneyFormState extends State<SendMoneyForm> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   double amount = 0.0;
   String description = '';
@@ -101,61 +102,98 @@ class SendMoneyFormState extends State<SendMoneyForm> {
                   )),
               const SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final accountProvider =
-                        Provider.of<AccountProvider>(context, listen: false);
-                    final scaffoldMessenger = ScaffoldMessenger.of(context);
+                onPressed: isLoading
+                    ? null
+                    : () async {
+                        if (_formKey.currentState!.validate()) {
+                          // set loading state
+                          setState(() {
+                            isLoading = true;
+                          });
+                          final accountProvider = Provider.of<AccountProvider>(
+                              context,
+                              listen: false);
+                          final scaffoldMessenger =
+                              ScaffoldMessenger.of(context);
 
-                    // transfer object for sending money
-                    Transfer transfer = Transfer(
-                      accountNumber: accountNumberController.text,
-                      amount: double.parse(amountController.text),
-                      description: descriptionController.text,
-                    );
+                          // transfer object for sending money
+                          Transfer transfer = Transfer(
+                            accountNumber: accountNumberController.text,
+                            amount: double.parse(amountController.text),
+                            description: descriptionController.text,
+                          );
+                          try {
+                            // send money
+                            bool success =
+                                await accountProvider.sendMoney(transfer);
 
-                    // send money
-                    bool success = await accountProvider.sendMoney(transfer);
+                            if (success) {
+                              scaffoldMessenger.showSnackBar(SnackBar(
+                                  content: Text(
+                                'Money sent succesfully',
+                                style: GoogleFonts.notoSans(
+                                    textStyle: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white)),
+                              )));
 
-                    if (success) {
-                      scaffoldMessenger.showSnackBar(SnackBar(
-                          content: Text(
-                        'Money sent succesfully',
-                        style: GoogleFonts.notoSans(
-                            textStyle: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
-                      )));
-
-                      Navigator.pop(context);
-                    } else {
-                      scaffoldMessenger.showSnackBar(SnackBar(
-                        content: Text(
-                          'Transfer failed!',
-                          style: GoogleFonts.notoSans(
-                              textStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white)),
-                        ),
-                      ));
-                    }
-                  }
-                },
+                              Navigator.pop(context);
+                            } else {
+                              scaffoldMessenger.showSnackBar(SnackBar(
+                                content: Text(
+                                  'Transfer failed!',
+                                  style: GoogleFonts.notoSans(
+                                      textStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white)),
+                                ),
+                              ));
+                            }
+                          } catch (e) {
+                            scaffoldMessenger.showSnackBar(SnackBar(
+                              content: Text(
+                                e.toString(),
+                                style: GoogleFonts.notoSans(
+                                    textStyle: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white)),
+                              ),
+                            ));
+                            setState(() {
+                              isLoading = false;
+                            });
+                          } finally {
+                            setState(() {
+                              isLoading = false;
+                            });
+                          }
+                        }
+                      },
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     backgroundColor: Colors.black),
-                child: Text('Send',
-                    style: GoogleFonts.notoSans(
-                      textStyle: const TextStyle(
+                child: isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
                           color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700),
-                    )),
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Text('Send',
+                        style: GoogleFonts.notoSans(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        )),
               ),
             ],
           ),
