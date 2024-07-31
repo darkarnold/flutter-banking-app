@@ -18,8 +18,8 @@ class QuickActionButtons extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const TransferFunds()));
             }),
-        ActionButton(
-            icon: Icons.payment_outlined, label: 'Receive', onTap: () {}),
+        // ActionButton(
+        //     icon: Icons.payment_outlined, label: 'Receive', onTap: () {}),
       ],
     );
   }

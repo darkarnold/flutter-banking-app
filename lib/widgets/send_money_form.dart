@@ -45,7 +45,7 @@ class SendMoneyFormState extends State<SendMoneyForm> {
             children: <Widget>[
               const SizedBox(height: 10),
               Text('Send To:',
-                  style: GoogleFonts.notoSans(
+                  style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -129,38 +129,42 @@ class SendMoneyFormState extends State<SendMoneyForm> {
 
                             if (success) {
                               scaffoldMessenger.showSnackBar(SnackBar(
-                                  content: Text(
-                                'Money sent succesfully',
-                                style: GoogleFonts.notoSans(
-                                    textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white)),
-                              )));
+                                content: Text(
+                                  'Money sent succesfully',
+                                  style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white)),
+                                ),
+                                backgroundColor: Colors.green[400],
+                              ));
 
                               Navigator.pop(context);
                             } else {
                               scaffoldMessenger.showSnackBar(SnackBar(
                                 content: Text(
                                   'Transfer failed!',
-                                  style: GoogleFonts.notoSans(
+                                  style: GoogleFonts.poppins(
                                       textStyle: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white)),
                                 ),
+                                backgroundColor: Colors.red[400],
                               ));
                             }
                           } catch (e) {
                             scaffoldMessenger.showSnackBar(SnackBar(
                               content: Text(
                                 e.toString(),
-                                style: GoogleFonts.notoSans(
+                                style: GoogleFonts.poppins(
                                     textStyle: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.white)),
                               ),
+                              backgroundColor: Colors.red[400],
                             ));
                             setState(() {
                               isLoading = false;
@@ -173,25 +177,25 @@ class SendMoneyFormState extends State<SendMoneyForm> {
                         }
                       },
                 style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 56),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     backgroundColor: Colors.black),
                 child: isLoading
                     ? const SizedBox(
-                        height: 20,
-                        width: 20,
+                        height: 24,
+                        width: 24,
                         child: CircularProgressIndicator(
                           color: Colors.white,
                           strokeWidth: 2,
                         ),
                       )
                     : Text('Send',
-                        style: GoogleFonts.notoSans(
+                        style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.w700),
                         )),
               ),

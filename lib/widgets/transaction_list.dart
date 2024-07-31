@@ -11,6 +11,10 @@ class TransactionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currencyFormatter = NumberFormat.simpleCurrency(
+      decimalDigits: 2,
+      name: ('USD'),
+    );
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: transaction.amount > 0 ? Colors.green : Colors.red,
@@ -19,13 +23,25 @@ class TransactionListItem extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      title: Text(transaction.description, style: GoogleFonts.notoSans()),
+      title: Text(transaction.description,
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Colors.black87),
+          )),
       subtitle: Text(
         DateFormat('dd-MM-yyyy\nHH:mm').format(transaction.date),
+        style: GoogleFonts.poppins(
+          textStyle: TextStyle(
+              fontSize: 12,
+              color: Colors.grey[400],
+              fontWeight: FontWeight.normal),
+        ),
       ),
       trailing: Text(
-          '${transaction.amount > 0 ? '+' : '-'}\$${transaction.amount.abs().toStringAsFixed(2)}',
-          style: GoogleFonts.notoSans(
+          '${transaction.amount > 0 ? '+' : '-'} ${currencyFormatter.format(transaction.amount.abs())}',
+          style: GoogleFonts.poppins(
             textStyle: TextStyle(
               color: transaction.amount > 0 ? Colors.green : Colors.red,
               fontWeight: FontWeight.bold,

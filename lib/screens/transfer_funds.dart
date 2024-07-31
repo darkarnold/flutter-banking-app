@@ -14,9 +14,11 @@ class TransferFunds extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Transfer Funds',
-          style: GoogleFonts.notoSans(
-            textStyle: const TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                color: Colors.blue[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),

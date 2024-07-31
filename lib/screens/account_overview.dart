@@ -17,11 +17,11 @@ class AccountOverview extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Account Overview',
-          style: GoogleFonts.notoSans(
-              textStyle: const TextStyle(
+          style: GoogleFonts.poppins(
+              textStyle: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: Colors.black)),
+                  color: Colors.blue[800])),
         ),
         actions: [
           IconButton(
@@ -43,11 +43,11 @@ class AccountOverview extends StatelessWidget {
               const QuickActionButtons(),
               const SizedBox(height: 20),
               Text('Recent Transactions',
-                  style: GoogleFonts.notoSans(
+                  style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Colors.black87,
                   ))),
               const SizedBox(height: 10),
               ListView.builder(
