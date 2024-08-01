@@ -2,8 +2,6 @@
 
 Sure, here's a basic README file for your Flutter banking mobile app:
 
-# BankMobileApp
-
 This is a Flutter application for a banking mobile app. The app allows users to login with their email and password, and it's designed to be used on both iOS and Android devices.
 
 ## Prerequisites
@@ -53,6 +51,29 @@ To run the app on an emulator or device, follow these steps:
 ## Assumptions
 
 The following assumptions were made while building the app:
+
+Any Android version below Android Sdk version 23 (Below Android 6 ) will not be able to run the application.
+
+iOS devices below iOS 13 wont be able to run the application.
+
+The splashscreen for Android 12 and above differs from those with other Android versions below 12.
+
+## User access
+
+In order to access the application here are the credentials
+Email: admin@admin.com
+Password: test123
+
+## Dependencies
+
+The following dependencies were used:
+
+1. [firebase_core](https://pub.dev/packages/firebase_core)(3.2.0)
+2. [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)(2.4.1)
+3. [provider](https://pub.dev/packages/provider)(6.1.2)
+4. [firebase_auth](https://pub.dev/packages/firebase_auth)(5.1.2)
+5. [google_fonts](https://pub.dev/packages/google_fonts)(6.2.1)
+6. [intl](https://pub.dev/packages/intl)(0.19.0)
 
 ## Contributing
 
